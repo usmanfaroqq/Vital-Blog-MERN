@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import errorImage from "../../images/404.svg";
+import errorImage from "../../../asset/images/404.svg";
 
 const NotFound = () => {
   return (

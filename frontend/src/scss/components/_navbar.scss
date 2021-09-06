@@ -1,7 +1,61 @@
+// upper navbar
+.top__banner-text {
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  user-select: none;
+}
 
-.top__banner-text{
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    user-select: none; 
+// middle navbar
+.middle-header {
+  margin-top: 25px;
+}
+
+.header__name {
+  text-align: center;
+  user-select: none;
+  & h1 {
+    font-family: $headline1;
+    font-weight: 500;
+    font-size: 60px;
+    color: #222222;
+    text-transform: uppercase;
+  }
+  & h5 {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+  }
+}
+
+.header__icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+  & Link {
+    background-color: black;
+  }
+}
+
+// lower__navbar
+.lower{
+    border-bottom: 1px solid green;
+}
+.lower__navbar {
+    border-top: 0.5px solid gray !important;
+    margin-top: 18px;
+    
+  &-text {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: black !important;
+  }
+  &-button{
+         font-size: 15px;
+  }
+  & Form{
+      margin-left: 50px;
+  }
 }

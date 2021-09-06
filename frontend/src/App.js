@@ -4,10 +4,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Navbar from './common/Navbar/MainNavbar';
-import NotFound from './common/Notfound/NotFound';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import Navbar from './components/common/Navbar/MainNavbar';
+import NotFound from './components/common/Notfound/NotFound';
 import Home from './components/Home/Home';
 import './scss/main.scss';
 
