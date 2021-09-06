@@ -23,7 +23,7 @@ module.exports.registerController = async (req, res) => {
   const { name, email, password } = req.body;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.json(errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
   try {
     const checkUser = await userSchema.findOne({ email });
@@ -38,13 +38,45 @@ module.exports.registerController = async (req, res) => {
     const hash = await bcrypt.hash(password, salt);
     try {
       // Posting Register data to database
-      const user = await userSchema.create({ name, email, password: hash, });
+      const user = await userSchema.create({ name, email, password: hash });
       const jwtToken = createToken(user);
       return res
         .status(200)
         .json({ msg: "Your account has been created", jwtToken });
     } catch (error) {
       return res.status(500).json({ errors: error });
+    }
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+};
+
+// Login Configurations
+module.exports.loginValidation = [
+  body("email").not().isEmpty().trim().withMessage("Email is required"),
+  body("password").not().isEmpty().withMessage("Password is required"),
+];
+
+module.exports.loginController = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { email, password } = req.body;
+  try {
+    const user = await userSchema.findOne({ email });
+    if (user) {
+      const matched = await bcrypt.compare(password, user.password);
+      if (matched) {
+        const token = createToken(user);
+        return res
+          .status(200)
+          .json({ msg: "You have login Successfully", token });
+      } else {
+        return res.status(401).json({ errors: [{ msg: "Password is wrong" }] });
+      }
+    } else {
+      return res.status(404).json({ errors: [{ msg: "User is not found" }] });
     }
   } catch (error) {
     return res.status(500).json({ errors: error });
