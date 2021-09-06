@@ -5,10 +5,10 @@ import UpperNavbar from './UpperNavbar';
 
 const Navbar = () => {
     return (
-        <div>
+        <div >
             <UpperNavbar/>
             <MiddleNavbar/>
-            <LowerNavbar/>
+            <LowerNavbar />
         </div>
     );
 };

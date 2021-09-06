@@ -11,7 +11,7 @@ import { ImSearch } from "react-icons/im";
 
 const LowerNavbar = () => {
   return (
-    <div className="lower">
+    <div className="shadow-sm  mb-5 rounded">
         <Container className="lower__navbar ">
         <Navbar  expand="lg" >
         <Nav.Link to="#" className="lower__navbar-text" active>Home</Nav.Link>
