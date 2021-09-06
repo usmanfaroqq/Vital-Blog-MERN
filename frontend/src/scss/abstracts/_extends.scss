@@ -1,0 +1,28 @@
+%flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+%navbar-element{
+    text-decoration: none;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: $logoColor;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+%button{
+    color:$white;
+    background-color:#353b48;
+    border-radius: 4px;
+    padding: 15px 18px 30px 15px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    font-size: 1.5rem;
+    box-shadow: 0 0 4px #999;
+    width: 100%;
+    text-transform: uppercase;
+    user-select: none;
+    transition: background 0.8s;
+}

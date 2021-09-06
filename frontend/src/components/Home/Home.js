@@ -8,6 +8,7 @@ const Home = () => {
                 <title>Vital Blog</title>
                 <meta name="description" content="Learn HTML css js etc"/>
             </Helmet>
+            <h1>Fine</h1>
         </>
     );
 };
