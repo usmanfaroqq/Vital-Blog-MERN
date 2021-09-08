@@ -1,24 +1,36 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { LOGOUT } from "../../../redux/types/AuthTypes";
+
 const UpperNavbar = () => {
   const { user } = useSelector((state) => state.AuthReducer);
+  const dispatch = useDispatch();
+  const logout = () => {
+    localStorage.removeItem("myToken");
+
+    dispatch({ type: LOGOUT });
+  };
   const Links = user ? (
-    <> 
+    <>
+      {" "}
+      <Link to="/create-post" className="top__banner-text gap-2">Create Post</Link>
       <Link className="top__banner-text gap-2" to="/dashboard">
         {user.name}
-      </Link> / /
-      <Link to="/logout" className="top__banner-text  gap-2">
-        Logout
       </Link>{" "}
+      / /
+      <span className="top__banner-text  gap-2" onClick={logout}>
+        Logout
+      </span>{" "}
     </>
   ) : (
-    < >
+    <>
       {" "}
-      <Link className="top__banner-text  " to="/login">
+      <Link  to="/login" className="top__banner-text  ">
         Login
-      </Link> / / 
+      </Link>{" "}
+      / /
       <Link to="/register" className="top__banner-text  ">
         Register
       </Link>{" "}

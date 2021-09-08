@@ -35,7 +35,7 @@ const Register = () => {
     if (registerErrors.length > 0) {
       registerErrors.map((error) => toast.error(error.msg));
     }
-  }, [registerErrors]);
+  }, [registerErrors, user]);
 
   return (
     <>

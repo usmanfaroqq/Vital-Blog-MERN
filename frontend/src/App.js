@@ -12,18 +12,22 @@ import RouteLinks from "./Private/RouteLinks";
 
 const App = () => {
   return (
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            <Navbar />
-            <Home />
-          </Route>
-          <RouteLinks path="/register" exact component={props => <div> <Navbar/> <Register/></div> } />
-          <RouteLinks path="/login" exact component={props => <div> <Navbar/> <Login/></div> } />
-          <PrivateRoutes path="/dashboard" exact  component={props => <div> <Navbar/> <Dashboard/></div> }/>
-          <Route path="*" exact component={NotFound} />
-        </Switch>
-      </Router>
+    <Router>
+      <Navbar/>
+      <Switch>
+        <Route path="/" exact>
+          <Navbar />
+          <Home />
+        </Route>
+        {/* <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
+          <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
+          <PrivateRoutes path="/dashboard" exact  component={props => <> <Navbar/> <Dashboard/></> }/> */}
+        <RouteLinks path="/register" exact component={Register} />
+        <RouteLinks path="/login" exact component={Login} />
+        <PrivateRoutes path="/dashboard" exact component={Dashboard} />
+        <Route path="*" exact component={NotFound} />
+      </Switch>
+    </Router>
   );
 };
 

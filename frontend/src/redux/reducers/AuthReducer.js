@@ -4,6 +4,7 @@ import {
   SET_LOADER,
   REGISTER_ERRORS,
   CLOSE_LOADER,
+  LOGOUT ,
 } from "../types/AuthTypes";
 
 const initState = {
@@ -23,12 +24,6 @@ const verifyToken = (jwtToken) => {
   } else {
     return decodedToken;
   }
-  // else{
-  //   initState.token = jwtToken;
-  //   const {user} = decodedToken;
-  //   initState.user = user;
-  // }
-  // jwt token for decoding for varification
 };
 const jwtToken = localStorage.getItem("myToken");
 if (jwtToken) {
@@ -49,8 +44,11 @@ const AuthReducer = (state = initState, action) => {
     const decoded = verifyToken(action.payload);
     const { user } = decoded;
     return { ...state, token: action.payload, user: user };
+  }else if (action.type === LOGOUT){
+    return { ...state, token: '', user: ''}
+  }else {
+    return state;
   }
-  return state;
 };
 
 export default AuthReducer;

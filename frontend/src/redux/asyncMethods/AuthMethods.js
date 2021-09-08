@@ -20,7 +20,6 @@ export const postRegister = (state) => {
         type: REGISTER_ERRORS,
         payload: error.response.data.errors,
       }); //errors
-      console.log(error.response);
     }
   };
 };
