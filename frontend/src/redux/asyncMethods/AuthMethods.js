@@ -1,5 +1,10 @@
 import axios from "axios";
-import {SET_TOKEN, SET_LOADER,REGISTER_ERRORS,CLOSE_LOADER} from '../types/AuthTypes';
+import {
+  SET_TOKEN,
+  SET_LOADER,
+  REGISTER_ERRORS,
+  CLOSE_LOADER,
+} from "../types/AuthTypes";
 
 export const postRegister = (state) => {
   return async (dispatch) => {
@@ -21,5 +26,24 @@ export const postRegister = (state) => {
         payload: error.response.data.errors,
       }); //errors
     }
+  };
+};
+
+// login AuthMethods
+
+export const postLogin = (state) => {
+  return async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      dispatch({ type: SET_LOADER });
+      const { data } = await axios.post("/login", state, config); // posting login data to backend and database
+      dispatch({ type: CLOSE_LOADER });
+      localStorage.setItem("myToken", data.jwtToken);
+      dispatch({ type: SET_TOKEN, payload: data.jwtToken });
+    } catch (error) {}
   };
 };
