@@ -1,10 +1,10 @@
 // dependencies
 const express = require("express");
 const dbConnect = require("./config/database");
-const router = require('./routes/userRoutes.js');
+const authRouter = require('./routes/userRoutes');
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const postRoutes = require('./routes/postRoutes')
+const postRouter = require('./routes/postRoutes')
 
 // Calling a function
 const app = express();
@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to vital Blog");
 }); // Home Route
 
-app.use('/', router) // Register/login Function
-app.use('/', router) // post Route
+app.use('/', authRouter) // Register/login Function
+app.use('/', postRouter) // post Route
 
 
 
