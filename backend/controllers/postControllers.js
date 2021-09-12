@@ -1,4 +1,6 @@
 const formidable = require("formidable");
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
@@ -27,7 +29,17 @@ const createPost = (req, res) => {
       const split = type.split("/");
       const extension = split[1].toLowerCase();
       if (extension !== "jpg" && extension !== 'jpeg' && extension !== 'png') {
-        
+        errors.push({ msg: `${extension} is not a valid`})
+      }else{
+        files.image.name = uuidv4() + '.' + extension;
+        const newPath = __dirname + `./../../frontend/public/images/${files.image.name}`
+        fs.copyFile(files.image.path, newPath, (error) => {
+          if(error){
+            console.log( error)
+          }else{
+            console.log('Image Uploaded')
+          }
+        })
       }
     }
     if (errors.length !== 0) {

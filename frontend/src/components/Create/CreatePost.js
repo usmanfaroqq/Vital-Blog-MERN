@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CreatePost = (event) => {
   const dispatch = useDispatch();
-  const { user:  {_id, name} } = useSelector((state) => state.AuthReducer);
+  const {
+    user: { _id, name },
+  } = useSelector((state) => state.AuthReducer);
   const [inputState, setInputState] = useState({
     title: "",
     description: "",
@@ -47,16 +49,18 @@ const CreatePost = (event) => {
   const imageHandle = (event) => {
     // select an image
     event.preventDefault();
-    setCurrentImage(event.target.files[0].name);
-    setInputState({
-      ...inputState,
-      [event.target.name]: event.target.files[0],
-    });
-    const imgPreview = new FileReader(); // preview image
-    imgPreview.onloadend = () => {
-      setImagePreview(imgPreview.result);
-    };
-    imgPreview.readAsDataURL(event.target.files[0]);
+    if (event.target.files.length !== 0) {
+      setCurrentImage(event.target.files[0].name);
+      setInputState({
+        ...inputState,
+        [event.target.name]: event.target.files[0],
+      });
+      const imgPreview = new FileReader(); // preview image
+      imgPreview.onloadend = () => {
+        setImagePreview(imgPreview.result);
+      };
+      imgPreview.readAsDataURL(event.target.files[0]);
+    }
   };
 
   const [category, setCategory] = useState([]);
@@ -72,17 +76,17 @@ const CreatePost = (event) => {
 
   const createNewPost = (event) => {
     event.preventDefault();
-    const {title, description, image} = inputState;
+    const { title, description, image } = inputState;
     const postData = new FormData();
-    postData.append("title", title)
-    postData.append("body", value)
-    postData.append("image", image)
-    postData.append("description", description)
-    postData.append("category", category)
-    postData.append("slug", slug)
-    postData.append("name", name)
-    postData.append("id", _id)
-    dispatch(createAction(postData))
+    postData.append("title", title);
+    postData.append("body", value);
+    postData.append("image", image);
+    postData.append("description", description);
+    postData.append("category", category);
+    postData.append("slug", slug);
+    postData.append("name", name);
+    postData.append("id", _id);
+    dispatch(createAction(postData));
   };
   return (
     <>
