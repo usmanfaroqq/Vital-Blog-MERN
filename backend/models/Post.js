@@ -1,5 +1,4 @@
 const { model, Schema } = require("mongoose");
-const ObjectId = Schema.Types.ObjectId
 
 
 const postSchema = new Schema(
@@ -33,7 +32,7 @@ const postSchema = new Schema(
     required: true,
   },
   userId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'user'
   },
 }, {timestamps :true}
