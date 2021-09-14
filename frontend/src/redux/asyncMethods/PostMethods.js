@@ -9,7 +9,10 @@ import {
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 export const createAction = (formData) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      AuthReducer: { token },
+    } = getState();
     dispatch({ type: SET_LOADER });
     try {
       const config = {
@@ -24,9 +27,29 @@ export const createAction = (formData) => {
       dispatch({ type: SET_MESSAGE, payload: data.msg });
     } catch (error) {
       console.log(error.response);
-			const { errors } = error.response.data;
-			dispatch({ type: CLOSE_LOADER });
-			dispatch({ type: POST_ERRORS, payload: errors });
+      const { errors } = error.response.data;
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: POST_ERRORS, payload: errors });
+    }
+  };
+}; // Posting content
+
+export const fetchPosts = (id) => {
+  return async (dispatch, getState) => {
+    const {
+      AuthReducer: { token },
+    } = getState();
+    dispatch({ type: SET_LOADER });
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await axios.get(`/posts/${id}`);
+      dispatch({type: CLOSE_LOADER});
+    } catch (error) {
+      dispatch({ type: CLOSE_LOADER})
     }
   };
 };

@@ -3,11 +3,10 @@ const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const postSchema = require("../models/Post");
 
-
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {
-    const { title, description,category, body,  slug, id, name } = fields;
+    const { title, description, category, body, slug, id, name } = fields;
     const errors = [];
     if (title === "") {
       errors.push({ msg: "Topic Title is required" });
@@ -56,9 +55,12 @@ const createPost = (req, res) => {
               category,
               slug,
               userName: name,
-              userId: id
+              userId: id,
             });
-            return res.status(200).json({ msg: "Your Post have been submitted successfully" , response });
+            return res.status(200).json({
+              msg: "Your Post have been submitted successfully",
+              response,
+            });
           } catch (error) {
             return res.status(500).json({ errors: error, msg: error.message });
           }
@@ -68,6 +70,18 @@ const createPost = (req, res) => {
   });
 };
 
+// fetch post
+const fetchPost = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const response = await Post.find({userId: id})
+    return res.status(200).json({data: response})
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message });
+  }
+};
+
 module.exports = {
   createPost,
+  fetchPost,
 };

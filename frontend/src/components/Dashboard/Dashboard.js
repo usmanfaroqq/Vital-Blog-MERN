@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
-
+import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 const Dashboard = () => {
   const { redirect, message } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
@@ -18,7 +18,12 @@ const Dashboard = () => {
       });
       dispatch({ type: REMOVE_MESSAGE });
     }
-  }, [message]);
+    dispatch(fetchPosts(_id));
+  }, [message]); // Showing post confirm message
+
+  const {user : {_id}} = useSelector((state) => state.AuthReducer)
+  console.log(_id)
+
   return (
     <>
       <Helmet>
