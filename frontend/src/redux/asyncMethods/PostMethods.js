@@ -36,9 +36,9 @@ export const createAction = (formData) => {
 
 export const fetchPosts = (id) => {
   return async (dispatch, getState) => {
-    const {
-      AuthReducer: { token },
-    } = getState();
+    // const {
+    //   AuthReducer: { token },
+    // } = getState();
     dispatch({ type: SET_LOADER });
     try {
       const config = {
@@ -46,8 +46,9 @@ export const fetchPosts = (id) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await axios.get(`/posts/${id}`);
+      const { data } = await axios.get(`/posts/${id}`, config);
       dispatch({type: CLOSE_LOADER});
+      console.log(data)
     } catch (error) {
       dispatch({ type: CLOSE_LOADER})
     }

@@ -7,7 +7,9 @@ import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 const Dashboard = () => {
   const { redirect, message } = useSelector((state) => state.PostReducer);
+  const {user : {_id}} = useSelector((state) => state.AuthReducer)
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (redirect) {
       dispatch({ type: REDIRECT_FALSE });
@@ -19,10 +21,9 @@ const Dashboard = () => {
       dispatch({ type: REMOVE_MESSAGE });
     }
     dispatch(fetchPosts(_id));
-  }, [message]); // Showing post confirm message
+  }, []); // Showing post confirm message
 
-  const {user : {_id}} = useSelector((state) => state.AuthReducer)
-  console.log(_id)
+  
 
   return (
     <>

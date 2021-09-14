@@ -71,11 +71,12 @@ const createPost = (req, res) => {
 };
 
 // fetch post
-const fetchPost = async (req, res) => {
+const fetchPosts = async (req, res) => {
   const id = req.params.id;
+
   try {
-    const response = await Post.find({userId: id})
-    return res.status(200).json({data: response})
+    const response = await postSchema.find({ userId: id });
+    return res.status(200).json({ data: response });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
   }
@@ -83,5 +84,5 @@ const fetchPost = async (req, res) => {
 
 module.exports = {
   createPost,
-  fetchPost,
+  fetchPosts,
 };
