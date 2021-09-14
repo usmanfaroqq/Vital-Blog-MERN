@@ -17,15 +17,16 @@ export const createAction = (formData) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const {data:  {msg} } = await axios.post("createNew_post", formData, config);
+      const { data } = await axios.post("createNew_post", formData, config);
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: REMOVE_ERRORS });
       dispatch({ type: REDIRECT_TRUE });
-      dispatch({ type: SET_MESSAGE, payload: msg });
+      dispatch({ type: SET_MESSAGE, payload: data.msg });
     } catch (error) {
-      const { errors } = error.response.data;
-      dispatch({ type: CLOSE_LOADER });
-      dispatch({ type: POST_ERRORS, payload: errors });
+      console.log(error.response);
+			const { errors } = error.response.data;
+			dispatch({ type: CLOSE_LOADER });
+			dispatch({ type: POST_ERRORS, payload: errors });
     }
   };
 };

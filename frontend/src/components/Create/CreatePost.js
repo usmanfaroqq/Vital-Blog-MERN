@@ -9,10 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
-
 const CreatePost = (props) => {
-  let history = useHistory();
-  const {createErrors, redirect} = useSelector((state) => state.PostReducer)
+  const history = useHistory()
+  const { createErrors, redirect } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
   const {
     user: { _id, name },
@@ -53,7 +52,6 @@ const CreatePost = (props) => {
   const [imagePreview, setImagePreview] = useState("");
   const imageHandle = (event) => {
     // select an image
-    event.preventDefault();
     if (event.target.files.length !== 0) {
       setCurrentImage(event.target.files[0].name);
       setInputState({
@@ -71,9 +69,10 @@ const CreatePost = (props) => {
   const [category, setCategory] = useState([]);
   const selectedCategory = (event) => {
     // select category
-    const data = { ...category };
-    data[event.target.name] = event.target.value;
-    setCategory(data);
+    setCategory({
+      ...category
+      [event.target.name] = event.target.value
+    })
   };
 
   // Body post content React quill
@@ -81,7 +80,6 @@ const CreatePost = (props) => {
 
   const createNewPost = (event) => {
     event.preventDefault();
-    swal("Good job!", "You clicked the button!", "success");
 
     const { title, description, image } = inputState;
     const postData = new FormData();
@@ -97,13 +95,13 @@ const CreatePost = (props) => {
   };
   // showing error message
   useEffect(() => {
-    // if (redirect){
-    //   props.history.push("/dashboard");
-    // }
-    if(createErrors.length !== 0){
-      createErrors.map((err) => toast.error(err.msg))
+    if (redirect ) {
+      history.push('/dashboard');
     }
-  },[createErrors, redirect])
+    if (createErrors.length !== 0) {
+      createErrors.map((err) => toast.error(err.msg));
+    }
+  }, [createErrors, redirect]);
   return (
     <>
       <Helmet>
@@ -135,8 +133,8 @@ const CreatePost = (props) => {
                       <label htmlFor="title">Topic Title*</label>
                       <input
                         type="text"
-                        name="title"
                         id="title"
+                        name="title"
                         className="textInputGroup__control"
                         placeholder="Blog Title"
                         onChange={handleInputs}
@@ -183,17 +181,38 @@ const CreatePost = (props) => {
                             aria-label="Floating label select example"
                             className="selectGroup-text"
                             onChange={selectedCategory}
-
+                            value={category.name}
                           >
-                            <option>News</option>
-                            <option>Business</option>
-                            <option>Magazine</option>
-                            <option>Sport</option>
-                            <option>Arts</option>
-                            <option>Culture</option>
-                            <option>Politics</option>
-                            <option>Style</option>
-                            <option>Travel</option>
+                            <option>
+                              Choose category
+                            </option>
+                            <option name="news" >
+                              News
+                            </option>
+                            <option name="business" >
+                              Business
+                            </option>
+                            <option name="magazine">
+                              Magazine
+                            </option>
+                            <option name="sport" >
+                              Sport
+                            </option>
+                            <option name="arts" >
+                              Arts
+                            </option>
+                            <option name="culture" >
+                              Culture
+                            </option>
+                            <option name="politics" >
+                              Politics
+                            </option>
+                            <option name="style" >
+                              Style
+                            </option>
+                            <option name="travel" >
+                              Travel
+                            </option>
                           </Form.Select>
                         </div>
                       </Col>

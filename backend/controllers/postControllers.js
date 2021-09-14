@@ -7,7 +7,7 @@ const postSchema = require("../models/Post");
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {
-    const { title, description, body, category, slug, id, name } = fields;
+    const { title, description,category, body,  slug, id, name } = fields;
     const errors = [];
     if (title === "") {
       errors.push({ msg: "Topic Title is required" });
@@ -56,7 +56,7 @@ const createPost = (req, res) => {
               category,
               slug,
               userName: name,
-              userId: id,
+              userId: id
             });
             return res.status(200).json({ msg: "Your Post have been submitted successfully" , response });
           } catch (error) {

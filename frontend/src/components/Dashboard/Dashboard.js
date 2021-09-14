@@ -3,8 +3,9 @@ import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
 import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
+import swal from "sweetalert";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const { redirect, message } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -12,7 +13,9 @@ const Dashboard = (props) => {
       dispatch({ type: REDIRECT_FALSE });
     }
     if(message) {
-      toast.success(message);
+      toast.success(message , {
+        duration: 4000,
+      });
       dispatch({ type: REMOVE_MESSAGE });
     }
   }, [message]);
@@ -29,7 +32,7 @@ const Dashboard = (props) => {
           className: "",
           style: {
             padding: "16px",
-            color: "red",
+            color: "green",
             fontSize: "1.5rem",
           },
         }}

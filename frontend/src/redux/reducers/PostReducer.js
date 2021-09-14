@@ -9,14 +9,12 @@ import {
   REMOVE_MESSAGE,
 } from "../types/PostTypes";
 
-
 const initState = {
   loading: false,
   createErrors: [],
   redirect: false,
-  message: "",
+  message: '',
 };
-
 
 const PostReducer = (state = initState, action) => {
   const { type, payload } = action;
@@ -31,9 +29,9 @@ const PostReducer = (state = initState, action) => {
   } else if (type === REDIRECT_FALSE) {
     return { ...state, redirect: false };
   } else if (type === SET_MESSAGE) {
-    return { ...state, message: action.payload };
+    return { ...state, message: payload };
   } else if (type === REMOVE_MESSAGE) {
-    return { ...state, message: "" };
+    return { ...state, message: '' };
   } else if (type === REMOVE_ERRORS) {
     return { ...state, createErrors: [] };
   } else {
