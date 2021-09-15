@@ -13,13 +13,13 @@
     user-select: none;
     text-decoration: none;
     color: black;
-    font-size: 16px;
+    font-size: 15px;
     font-family: $headline2;
   }
 .dropdownMenu{
   padding: 10px;
   margin-top: 1rem;
-  width: 200px;
+  width: 150px;
   height: 150px;
 }
 @include responsive(tablet) {

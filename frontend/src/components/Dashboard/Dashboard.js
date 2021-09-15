@@ -84,7 +84,7 @@ const Dashboard = () => {
                           {/* <p><BiShare className="dashboard__body-lower-btn "  /></p> */}
                           <p>
                             <Dropdown  >
-                              <Dropdown.Toggle className="dashboard__body-lower-btn "  style={{backgroundColor:'white', border:'none', outline: 'none', color: 'black'}}
+                              <Dropdown.Toggle className="dashboard__body-lower-btn "  
                                 id="dropdown-basic">
                                 <BsThreeDots/>
                               </Dropdown.Toggle>
