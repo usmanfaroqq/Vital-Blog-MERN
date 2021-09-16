@@ -12,7 +12,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { BiShare } from "react-icons/bi";
 import {Dropdown} from 'react-bootstrap'
 import EmptyShow from "../common/EmptyShow/EmptyShow";
-import Pagination from '../common/Pagination/Pagination'
+import DashboardPagination from '../common/Pagination/Pagination'
 
 
 const Dashboard = () => {
@@ -114,7 +114,7 @@ const Dashboard = () => {
                 ) : (
                   <DashboardSkeleton length={posts.length} />
                 )}
-                <Pagination page={page} perPage={perPage} count={count}/>
+                <DashboardPagination page={page} perPage={perPage} count={count}/>
               </Col>
             </div>
           </div>

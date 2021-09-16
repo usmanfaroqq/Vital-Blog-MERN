@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Pagination } from "react-bootstrap";
 
-const Pagination = ({ count, page, perPage }) => {
-
+const DashboardPagination = ({ count, page, perPage }) => {
   let totalPages = Math.ceil(count / perPage);
   let startLoop = page;
   let difference = totalPages - page;
@@ -12,9 +13,24 @@ const Pagination = ({ count, page, perPage }) => {
   if (startLoop <= 0) {
     startLoop = 1;
   }
-  return <div>
-
-  </div>;
+  const links = () => {
+    const store = [];
+    let active = [];
+    for (let number = startLoop; number <= endLoop; number++) {
+      store.push(
+        
+          <Pagination.Item  key={number} active={number === active} >
+              <Link to={`/dashboard/${number}`}>{number}</Link>
+          </Pagination.Item>
+      );
+    }
+    return store;
+  };
+  return (
+    <div>
+      <Pagination >{links()}</Pagination>
+    </div>
+  );
 };
 
-export default Pagination;
+export default DashboardPagination;
