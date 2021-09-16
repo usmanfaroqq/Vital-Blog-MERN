@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
 import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
-import { BiShare } from "react-icons/bi";
+// import { BiShare } from "react-icons/bi";
 import {Dropdown} from 'react-bootstrap'
 import EmptyShow from "../common/EmptyShow/EmptyShow";
 import DashboardPagination from '../common/Pagination/Pagination'
@@ -96,10 +96,10 @@ const Dashboard = () => {
                                 <BsThreeDots/>
                               </Dropdown.Toggle>
                               <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">
-                                <p>Edit</p>
+                                <Dropdown.Item>
+                                  <Link to={`/edit/${post._id}`} className="dashboard__body-lower-link">Edit</Link>
                                 </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">
+                                <Dropdown.Item>
                                 <p>Delete</p>
                                 </Dropdown.Item>
                               </Dropdown.Menu>
