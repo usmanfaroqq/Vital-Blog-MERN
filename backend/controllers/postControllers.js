@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const postSchema = require("../models/Post");
 
-
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {
@@ -73,11 +72,19 @@ const createPost = (req, res) => {
 
 // fetch post
 const fetchPosts = async (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
+  const page = req.params.page;
+  const perPage = 5;
+  const skip = (page - 1) * perPage;
 
   try {
-    const response = await postSchema.find({ userId: id });
-    return res.status(200).json({ postData: response });
+    const count = await postSchema.find({ userId: id }).countDocuments();
+    const response = await postSchema
+      .find({ userId: id })
+      .skip(skip)
+      .limit(perPage)
+      .sort({ updatedAt: -1 });
+    return res.status(200).json({ postData: response, count, perPage });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
   }

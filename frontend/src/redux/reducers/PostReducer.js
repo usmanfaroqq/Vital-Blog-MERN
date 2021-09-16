@@ -7,15 +7,17 @@ import {
   REDIRECT_FALSE,
   SET_MESSAGE,
   REMOVE_MESSAGE,
-  SET_POSTS
+  SET_POSTS,
 } from "../types/PostTypes";
 
 const initState = {
   loading: false,
   createErrors: [],
   redirect: false,
-  message: '',
+  message: "",
   posts: [],
+  perPage: 0,
+  count: 0,
 };
 
 export const PostReducer = (state = initState, action) => {
@@ -33,21 +35,24 @@ export const PostReducer = (state = initState, action) => {
   } else if (type === SET_MESSAGE) {
     return { ...state, message: payload };
   } else if (type === REMOVE_MESSAGE) {
-    return { ...state, message: '' };
+    return { ...state, message: "" };
   } else if (type === REMOVE_ERRORS) {
     return { ...state, createErrors: [] };
   } else {
     return state;
   }
-};// Posting new blog
-
-
+}; // Posting new blog
 
 export const FetchPosts = (state = initState, action) => {
-    const {type, payload} = action;
-    if (type === SET_POSTS) {
-      return {...state, posts: payload}
-    }else{
-      return state;
-    }
-}
+  const { type, payload } = action;
+  if (type === SET_POSTS) {
+    return {
+      ...state,
+      posts: payload.postData,
+      count: payload.count,
+      perPage: payload.perPage,
+    };
+  } else {
+    return state;
+  }
+};

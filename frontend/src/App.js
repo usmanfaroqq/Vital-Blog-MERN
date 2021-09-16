@@ -23,7 +23,7 @@ const App = () => {
         </Route>
         <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
-        <PrivateRoutes path="/dashboard" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
+        <PrivateRoutes path="/dashboard/:page?" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
         <PrivateRoutes path="/new-post" exact  component={props => <> <UpperNavbar/> <CreatePost/></> }/>
         <PrivateRoutes path="/me/setting" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
         <Route path="*" exact component={NotFound} />

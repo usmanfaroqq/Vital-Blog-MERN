@@ -6,12 +6,15 @@ import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 import { Col, Container, Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
 import { BiShare } from "react-icons/bi";
 import {Dropdown} from 'react-bootstrap'
 import EmptyShow from "../common/EmptyShow/EmptyShow";
+import Pagination from '../common/Pagination/Pagination'
+
+
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
     (state) => state.PostReducer
@@ -19,9 +22,12 @@ const Dashboard = () => {
   const {
     user: { _id },
   } = useSelector((state) => state.AuthReducer);
-  const { posts } = useSelector((state) => state.FetchPosts);
+  const { posts, count, perPage } = useSelector((state) => state.FetchPosts);
+  let {page} = useParams(); // for pagiation
+  if (page === undefined) {
+    page = 1;
+  }// pagiation
   const dispatch = useDispatch();
-  console.log("ok", posts);
   useEffect(() => {
     if (redirect) {
       dispatch({ type: REDIRECT_FALSE });
@@ -32,8 +38,8 @@ const Dashboard = () => {
       });
       dispatch({ type: REMOVE_MESSAGE });
     }
-    dispatch(fetchPosts(_id));
-  }, []); // Showing post confirm message
+    dispatch(fetchPosts(_id, page));
+  }, [page]); // Showing post confirm message
 
   return (
     <>
@@ -108,6 +114,7 @@ const Dashboard = () => {
                 ) : (
                   <DashboardSkeleton length={posts.length} />
                 )}
+                <Pagination page={page} perPage={perPage} count={count}/>
               </Col>
             </div>
           </div>

@@ -39,7 +39,7 @@ export const createAction = (formData) => {
 }; // Posting content
 
 
-export const fetchPosts = (id) => {
+export const fetchPosts = (id, page) => {
   return async (dispatch, getState) => {
     const {
       AuthReducer: { token },
@@ -51,9 +51,9 @@ export const fetchPosts = (id) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data: {postData} } = await axios.get(`/posts/${id}`, config);
+      const { data: {postData, count, perPage} } = await axios.get(`/posts/${id}/${page}`, config);
       dispatch({type: CLOSE_LOADER});
-      dispatch({ type: SET_POSTS, payload: postData})
+      dispatch({ type: SET_POSTS, payload: {postData , count, perPage} });
     } catch (error) {
       dispatch({ type: CLOSE_LOADER})
     }

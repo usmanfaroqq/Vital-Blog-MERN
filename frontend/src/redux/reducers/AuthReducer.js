@@ -29,9 +29,11 @@ const verifyToken = (jwtToken) => {
 const jwtToken = localStorage.getItem("myToken");
 if (jwtToken) {
   const decoded = verifyToken(jwtToken);
-  initState.token = jwtToken;
-  const { user } = decoded;
-  initState.user = user;
+  if (decoded) {
+    initState.token = jwtToken;
+    const { user } = decoded;
+    initState.user = user;
+  }
 }
 
 const AuthReducer = (state = initState, action) => {
