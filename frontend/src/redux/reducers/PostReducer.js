@@ -8,7 +8,8 @@ import {
   SET_MESSAGE,
   REMOVE_MESSAGE,
   SET_POSTS,
-  SET_POST
+  SET_POST,
+  POST_REQUEST,
 } from "../types/PostTypes";
 
 const initState = {
@@ -20,6 +21,7 @@ const initState = {
   perPage: 0,
   count: 0,
   post: {},
+  postStatus: false,
 };
 
 // Posting new blog
@@ -44,9 +46,9 @@ export const PostReducer = (state = initState, action) => {
   } else {
     return state;
   }
-}; 
+};
 
-// fetching posts for user dashboard 
+// fetching posts for user dashboard
 export const FetchPosts = (state = initState, action) => {
   const { type, payload } = action;
   if (type === SET_POSTS) {
@@ -61,10 +63,14 @@ export const FetchPosts = (state = initState, action) => {
   }
 };
 
-// fetching posts for edit 
+// fetching posts for edit
 export const FetchSinglePost = (state = initState, action) => {
   const { type, payload } = action;
-  if(type === SET_POST){
-    return {...state, post: payload}
+  if (type === SET_POST) {
+    return { ...state, post: payload };
+  } else if (type === POST_REQUEST) {
+    return { ...state, postStatus: true };
+  } else {
+    return state;
   }
-}
+};

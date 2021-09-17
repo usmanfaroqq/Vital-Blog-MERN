@@ -7,7 +7,8 @@ import {
   REDIRECT_TRUE,
   SET_MESSAGE,
   SET_POSTS,
-  SET_POST
+  SET_POST,
+  POST_REQUEST
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 
@@ -78,6 +79,7 @@ export const fetchSinglePost = (id) => {
       const {data: {singlePost}} = await axios.get(`/post/${id}`)
       dispatch({ type: CLOSE_LOADER})
       dispatch({ type : SET_POST, payload: singlePost})
+      dispatch({ type : POST_REQUEST})
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
       console.log(error.message);

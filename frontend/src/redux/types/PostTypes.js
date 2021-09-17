@@ -8,3 +8,5 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export const SET_POSTS = "SET_POSTS";
 export const SET_POST = "SET_POST";
+export const POST_REQUEST = "POST_REQUEST";
+export const POST_RESET = "POST_RESET";
