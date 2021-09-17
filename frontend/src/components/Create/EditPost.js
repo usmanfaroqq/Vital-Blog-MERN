@@ -32,6 +32,7 @@ const EditPost = () => {
       dispatch(fetchSinglePost(id));
     }
   }, [post]);
+  console.log(post)
   return (
     <div>
       <Helmet>
@@ -87,6 +88,7 @@ const EditPost = () => {
                             className="textInputGroup__control"
                             placeholder="meta description...."
                             maxLength="200"
+                            defaultValue={editState.description}
                             onChange={(e) =>
                               setEditState({
                                 ...editState,
