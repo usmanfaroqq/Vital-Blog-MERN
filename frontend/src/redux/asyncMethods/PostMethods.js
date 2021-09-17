@@ -76,7 +76,7 @@ export const fetchSinglePost = (id) => {
     };
     dispatch({ type: SET_LOADER });
     try {
-      const {data: {singlePost}} = await axios.get(`/post/${id}`)
+      const {data: {singlePost}} = await axios.get(`/post/${id}`, config)
       dispatch({ type: CLOSE_LOADER})
       dispatch({ type : SET_POST, payload: singlePost})
       dispatch({ type : POST_REQUEST})

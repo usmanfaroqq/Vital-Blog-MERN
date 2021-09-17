@@ -9,13 +9,13 @@ import { fetchSinglePost } from "../../redux/asyncMethods/PostMethods";
 import { POST_RESET } from "../../redux/types/PostTypes";
 
 const EditPost = () => {
+  const { id } = useParams();
+  // Body post content React quill
+  const [value, setValue] = useState('');
   const [editState, setEditState] = useState({
     title: "",
     description: "",
   });
-  const { id } = useParams();
-  // Body post content React quill
-  const [value, setValue] = useState("");
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.PostReducer);
@@ -26,7 +26,6 @@ const EditPost = () => {
         title: post.title,
         description: post.description,
       });
-      setValue(post.body);
       dispatch({ type: POST_RESET });
     } else {
       dispatch(fetchSinglePost(id));
@@ -55,7 +54,7 @@ const EditPost = () => {
                         name="title"
                         className="textInputGroup__control"
                         placeholder="Blog Title"
-                        value={editState.value}
+                        value={editState.title}
                         onChange={(e) =>
                           setEditState({ ...editState, title: e.target.value })
                         }
@@ -69,9 +68,10 @@ const EditPost = () => {
                     </label>
                     <ReactQuill
                       theme="snow"
+                      id='body'
+                      placeholder="Lorem Ispum..."
                       value={value}
                       onChange={setValue}
-                      placeholder="Lorem Ispum..."
                     />
                   </div>
 
