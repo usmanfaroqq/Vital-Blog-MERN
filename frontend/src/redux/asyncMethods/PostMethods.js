@@ -9,7 +9,8 @@ import {
   SET_POSTS,
   SET_POST,
   POST_REQUEST,
-  SET_UPDATE_ERRORS
+  SET_UPDATE_ERRORS,
+  UPDATE_IMAGE_ERRORS,
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 
@@ -66,7 +67,7 @@ export const fetchPosts = (id, page) => {
 
 // fetching singlePost for edit
 export const fetchSinglePost = (id) => {
-  return async(dispatch, getState) => {
+  return async (dispatch, getState) => {
     const {
       AuthReducer: { token },
     } = getState();
@@ -77,17 +78,18 @@ export const fetchSinglePost = (id) => {
     };
     dispatch({ type: SET_LOADER });
     try {
-      const {data: {singlePost}} = await axios.get(`/post/${id}`, config)
-      dispatch({ type: CLOSE_LOADER})
-      dispatch({ type : SET_POST, payload: singlePost})
-      dispatch({ type : POST_REQUEST})
+      const {
+        data: { singlePost },
+      } = await axios.get(`/post/${id}`, config);
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: SET_POST, payload: singlePost });
+      dispatch({ type: POST_REQUEST });
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
       console.log(error.message);
     }
   };
 };
-
 
 // updating Post
 export const updatePost = (editedData) => {
@@ -102,20 +104,23 @@ export const updatePost = (editedData) => {
     };
     dispatch({ type: SET_LOADER });
     try {
-      const {data} = await axios.post("/update", editedData, config)
-      dispatch({type: CLOSE_LOADER})
-      dispatch({type: REDIRECT_TRUE})
-      dispatch({type: SET_MESSAGE, payload: data.msg})
-    } catch (error) {
-      const {response : {data: {errors}}} = error;
+      const { data } = await axios.post("/update", editedData, config);
       dispatch({ type: CLOSE_LOADER });
-      dispatch({type: SET_UPDATE_ERRORS, payload: errors})
-      console.log(error.response);
+      dispatch({ type: REDIRECT_TRUE });
+      dispatch({ type: SET_MESSAGE, payload: data.msg });
+    } catch (error) {
+      const {
+        response: {
+          data: { errors },
+        },
+      } = error;
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: SET_UPDATE_ERRORS, payload: errors });
     }
-  }
-}
+  };
+};
 
-// update image 
+// update image
 export const updateImage = (updateData) => {
   return async (dispatch, getState) => {
     const {
@@ -128,12 +133,20 @@ export const updateImage = (updateData) => {
     };
     dispatch({ type: SET_LOADER });
     try {
-      const {data} = await axios.post("/update-image",updateData, config)
-      dispatch({type: CLOSE_LOADER})
-      console.log(data)
+      const {
+        data: { msg },
+      } = await axios.post("/update-image", updateData, config);
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: REDIRECT_TRUE });
+      dispatch({ type: SET_MESSAGE, payload: msg });
     } catch (error) {
-      console.log(error.response)
+      const {
+        response: {
+          data: { errors },
+        },
+      } = error;
+      dispatch({ type: CLOSE_LOADER });
+      dispatch({ type: UPDATE_IMAGE_ERRORS, payload: errors });
     }
-  }
-
-}
+  };
+};

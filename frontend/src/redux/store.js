@@ -2,14 +2,15 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunkMiddleware from "redux-thunk";
 import AuthReducer from "./reducers/AuthReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {PostReducer, FetchPosts, FetchSinglePost, UpdatePost} from "./reducers/PostReducer";
+import {PostReducer, FetchPosts, FetchSinglePost, UpdatePost, UpdateImage} from "./reducers/PostReducer";
 
 const rootReducer = combineReducers({
   AuthReducer,
   PostReducer,
   FetchPosts,
   FetchSinglePost,
-  UpdatePost
+  UpdatePost,
+  UpdateImage
 });
 
 const middlewares = [thunkMiddleware ];

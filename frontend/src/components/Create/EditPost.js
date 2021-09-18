@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useParams, useHistory } from "react-router-dom";
-import { Col, Container, Row, Form } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
