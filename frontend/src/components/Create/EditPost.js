@@ -5,7 +5,7 @@ import { Col, Container, Row, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSinglePost } from "../../redux/asyncMethods/PostMethods";
+import { fetchSinglePost, updatePost } from "../../redux/asyncMethods/PostMethods";
 import { POST_RESET } from "../../redux/types/PostTypes";
 
 const EditPost = () => {
@@ -31,6 +31,14 @@ const EditPost = () => {
       dispatch(fetchSinglePost(id));
     }
   }, [post]);
+  const updateEditedPost = event => {
+    event.preventDefault();
+    dispatch(updatePost({
+      title: editState.title,
+      body: value,
+      description: editState.description,
+    }))
+  }
   console.log(post)
   return (
     <div>
@@ -42,7 +50,7 @@ const EditPost = () => {
         <Container>
           <Row>
             <Col md={12}>
-              <form action="">
+              <form onSubmit={updateEditedPost}>
                 <div className="create__post-card">
                   <div className="create__post-group">
                     <h2>Post Information</h2>

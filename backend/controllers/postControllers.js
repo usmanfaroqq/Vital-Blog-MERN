@@ -101,8 +101,20 @@ const fetchSinglePost = async (req, res) => {
   }
 };
 
+
+
+// updating post
+const updatePost = async (req, res) => {
+  
+}
+
+
+
+
+
 module.exports = {
   createPost,
   fetchPosts,
   fetchSinglePost,
+  updatePost
 };

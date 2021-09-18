@@ -86,3 +86,26 @@ export const fetchSinglePost = (id) => {
     }
   };
 };
+
+
+// updating Post
+export const updatePost = (editedData) => {
+  return async (dispatch, getState) => {
+    const {
+      AuthReducer: { token },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: SET_LOADER });
+    try {
+      const {data} = await axios.get("/update", editedData, config)
+      dispatch({type: CLOSE_LOADER})
+    } catch (error) {
+      dispatch({ type: CLOSE_LOADER });
+      console.log(error.message)
+    }
+  }
+}
