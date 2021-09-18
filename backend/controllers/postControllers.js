@@ -141,17 +141,24 @@ const updatePost = async (req, res) => {
         body,
         description,
       });
-      return res.status(200).json({msg: 'Your content has been updated'})
+      return res.status(200).json({ msg: "Your content has been updated" });
     } catch (error) {
       return res.status(500).json({ errors: error, msg: error.message });
     }
   }
 };
-
+// updating image
+const updateImage = async (req, res) => {
+  const imageForm = formidable({ multiples: true });
+  imageForm.parse(req, (errors, fields, files) => {
+    console.log(files)
+  })
+};
 module.exports = {
   createPost,
   fetchPosts,
   fetchSinglePost,
   updatePost,
   updateValidation,
+  updateImage,
 };

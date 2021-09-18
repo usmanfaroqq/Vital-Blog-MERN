@@ -114,3 +114,26 @@ export const updatePost = (editedData) => {
     }
   }
 }
+
+// update image 
+export const updateImage = (updateData) => {
+  return async (dispatch, getState) => {
+    const {
+      AuthReducer: { token },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: SET_LOADER });
+    try {
+      const {data} = await axios.post("/update-image",updateData, config)
+      dispatch({type: CLOSE_LOADER})
+      console.log(data)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+
+}
