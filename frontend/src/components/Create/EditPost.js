@@ -36,14 +36,17 @@ const EditPost = () => {
 
   const updateEditedPost = event => {
     event.preventDefault();
-    // console.log(value)
-    // dispatch(updatePost({
-    //   title: editState.title,
-    //   body: value,
-    //   description: editState.description,
-    // }))
+    console.log(value)
+    dispatch(updatePost({
+      title: editState.title,
+      body: value,
+      description: editState.description,
+    }))
   }
-  console.log(post)
+
+
+
+
   return (
     <div>
       <Helmet>
@@ -102,6 +105,12 @@ const EditPost = () => {
                             maxLength="200"
                             defaultValue={editState.description}
                             onChange={(e) =>
+                              setEditState({
+                                ...editState,
+                                description: e.target.value,
+                              })
+                            }
+                            onKeyUp={(e) =>
                               setEditState({
                                 ...editState,
                                 description: e.target.value,

@@ -1,7 +1,9 @@
 const formidable = require("formidable");
 const { v4: uuidv4 } = require("uuid");
-const fs = require("fs");
 const postSchema = require("../models/Post");
+const {body, validationResult} = require('express-validator')
+const fs = require("fs");
+const { htmlToText } = require('html-to-text');
 
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
@@ -104,11 +106,32 @@ const fetchSinglePost = async (req, res) => {
 
 
 
-// updating post
-const updatePost = async (req, res) => {
-  
-}
 
+
+// updating post validation
+const updateValidation =  [
+  body('title').notEmpty().trim().withMessage('Please give a title to your content'),
+  body('body').notEmpty().trim().custom((value) => {
+      let bodyValue = value.replace(/\n/g, '')
+      if(htmlToText(bodyValue).trim().length === 0) {
+        return false
+      } else{
+        return true
+      }
+  })
+  .withMessage("Please describe your content"),
+  body('description').notEmpty().trim().withMessage('Please give a short description to your content')
+];
+
+// updating post 
+const updatePost = async (req, res) => {
+  const {title, body, description} = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({errors: errors.array()})
+    
+  }
+}
 
 
 
@@ -117,5 +140,6 @@ module.exports = {
   createPost,
   fetchPosts,
   fetchSinglePost,
-  updatePost
+  updatePost,
+  updateValidation
 };

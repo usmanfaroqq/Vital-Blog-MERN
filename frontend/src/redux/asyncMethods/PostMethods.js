@@ -101,11 +101,11 @@ export const updatePost = (editedData) => {
     };
     dispatch({ type: SET_LOADER });
     try {
-      const {data} = await axios.get("/update", editedData, config)
+      const {data} = await axios.post("/update", editedData, config)
       dispatch({type: CLOSE_LOADER})
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
-      console.log(error.message)
+      console.log(error.response);
     }
   }
 }
