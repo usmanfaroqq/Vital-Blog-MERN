@@ -8,7 +8,8 @@ import {
   SET_MESSAGE,
   SET_POSTS,
   SET_POST,
-  POST_REQUEST
+  POST_REQUEST,
+  SET_UPDATE_ERRORS
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
 
@@ -104,7 +105,9 @@ export const updatePost = (editedData) => {
       const {data} = await axios.post("/update", editedData, config)
       dispatch({type: CLOSE_LOADER})
     } catch (error) {
+      const {response : {data: {errors}}} = error;
       dispatch({ type: CLOSE_LOADER });
+      dispatch({type: SET_UPDATE_ERRORS, payload: errors})
       console.log(error.response);
     }
   }

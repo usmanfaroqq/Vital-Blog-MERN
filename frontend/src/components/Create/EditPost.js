@@ -20,6 +20,7 @@ const EditPost = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.PostReducer);
   const { post, postStatus } = useSelector((state) => state.FetchSinglePost);
+  const {updateErrors} = useSelector((state) => state.UpdatePost)
   useEffect(() => {
     if (postStatus) {
       setEditState({

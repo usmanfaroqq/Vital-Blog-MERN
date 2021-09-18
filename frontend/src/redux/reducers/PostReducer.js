@@ -11,6 +11,7 @@ import {
   SET_POST,
   POST_REQUEST,
   POST_RESET,
+  SET_UPDATE_ERRORS,
 } from "../types/PostTypes";
 
 const initState = {
@@ -23,6 +24,7 @@ const initState = {
   count: 0,
   post: {},
   postStatus: false,
+  updateErrors: [],
 };
 
 // Posting new blog
@@ -73,6 +75,16 @@ export const FetchSinglePost = (state = initState, action) => {
     return { ...state, postStatus: true };
   } else if (type === POST_RESET) {
     return { ...state, postStatus: false };
+  } else {
+    return state;
+  }
+};
+
+// updating post
+export const UpdatePost = (state = initState, action) => {
+  const { type, payload } = action;
+  if (type === SET_UPDATE_ERRORS) {
+    return { ...state, updateErrors: payload };
   } else {
     return state;
   }
