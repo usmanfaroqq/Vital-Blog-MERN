@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
-import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
+import {
+  REDIRECT_FALSE,
+  REMOVE_MESSAGE,
+  SET_LOADER,
+  CLOSE_LOADER,
+  SET_MESSAGE,
+} from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
-// import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
-// import { BiShare } from "react-icons/bi";
-import {Dropdown} from 'react-bootstrap'
+import { Dropdown } from "react-bootstrap";
 import EmptyShow from "../common/EmptyShow/EmptyShow";
-import DashboardPagination from '../common/Pagination/Pagination'
-
+import DashboardPagination from "../common/Pagination/Pagination";
+import axios from "axios";
+import swal from "sweetalert";
 
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
@@ -21,12 +26,14 @@ const Dashboard = () => {
   );
   const {
     user: { _id },
+    token,
   } = useSelector((state) => state.AuthReducer);
   const { posts, count, perPage } = useSelector((state) => state.FetchPosts);
-  let {page} = useParams(); // for pagiation
+
+  let { page } = useParams(); // for pagiation
   if (page === undefined) {
     page = 1;
-  }// pagiation
+  } // pagiation
   const dispatch = useDispatch();
   useEffect(() => {
     if (redirect) {
@@ -38,11 +45,34 @@ const Dashboard = () => {
       });
       dispatch({ type: REMOVE_MESSAGE });
     }
+  }, [message]); // Showing post confirm message
+
+  // Delete post
+  const deletePost = async (id) => {
+    try {
+      const confirm = window.confirm('Are you sure you want to delete this post?');
+      if (confirm) {
+        dispatch({ type: SET_LOADER });
+        try {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+          const {
+            data: { msg },
+          } = await axios.get(`/delete-post/${id}`, config);
+          dispatch(fetchPosts(_id, page));
+          dispatch({ type: SET_MESSAGE, payload: msg });
+        } catch (error) {
+          dispatch({ type: CLOSE_LOADER });
+        }
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
     dispatch(fetchPosts(_id, page));
-  }, [page]); // Showing post confirm message
-
-  
-
+  }, [page]);
   return (
     <>
       <Helmet>
@@ -82,7 +112,9 @@ const Dashboard = () => {
                       <div className="dashboard__body-card" key={post._id}>
                         <div className="dashboard__body-middle">
                           <h2>
-                            <Link style={{ textDecoration: "none", color: "black" }}>
+                            <Link
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
                               {post.title}
                             </Link>
                           </h2>
@@ -92,20 +124,37 @@ const Dashboard = () => {
                           <p>{post.createdAt}</p>
                           {/* <p><BiShare className="dashboard__body-lower-btn "  /></p> */}
                           <p>
-                            <Dropdown  >
-                              <Dropdown.Toggle className="dashboard__body-lower-btn "  
-                                id="dropdown-basic">
-                                <BsThreeDots/>
+                            <Dropdown>
+                              <Dropdown.Toggle
+                                className="dashboard__body-lower-btn "
+                                id="dropdown-basic"
+                              >
+                                <BsThreeDots />
                               </Dropdown.Toggle>
                               <Dropdown.Menu>
                                 <Dropdown.Item>
-                                  <Link to={`/edit/${post._id}`} className="dashboard__body-lower-link">Edit</Link>
+                                  <Link
+                                    to={`/edit/${post._id}`}
+                                    className="dashboard__body-lower-link"
+                                  >
+                                    Edit
+                                  </Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                  <Link to={`/edit/cover-photo/${post._id}`} className="dashboard__body-lower-link">Edit Cover Photo</Link>
+                                  <Link
+                                    to={`/edit/cover-photo/${post._id}`}
+                                    className="dashboard__body-lower-link"
+                                  >
+                                    Edit Cover Photo
+                                  </Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                <Link to='#' className="dashboard__body-lower-link">Delete Post</Link>
+                                  <p
+                                    className="dashboard__body-lower-link"
+                                    onClick={(e) => deletePost(post._id)}
+                                  >
+                                    Delete Post
+                                  </p>
                                 </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
@@ -114,14 +163,19 @@ const Dashboard = () => {
                       </div>
                     ))
                   ) : (
-                    <EmptyShow/>
+                    <EmptyShow />
                   )
                 ) : (
                   <DashboardSkeleton length={posts.length} />
                 )}
-              <div className="dashboard__body-pagination">
-              <DashboardPagination page={page} perPage={perPage} count={count} style={{justifyContent:"flex-end"}}/>
-              </div>
+                <div className="dashboard__body-pagination">
+                  <DashboardPagination
+                    page={page}
+                    perPage={perPage}
+                    count={count}
+                    style={{ justifyContent: "flex-end" }}
+                  />
+                </div>
               </Col>
             </div>
           </div>

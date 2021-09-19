@@ -151,7 +151,7 @@ const updatePost = async (req, res) => {
 const updateImage = async (req, res) => {
   const imageForm = formidable({ multiples: true });
   imageForm.parse(req, (errors, fields, files) => {
-    const {id} = fields
+    const { id } = fields;
     const updateImageErrors = [];
     if (Object.keys(files).length === 0) {
       updateImageErrors.push({
@@ -174,8 +174,12 @@ const updateImage = async (req, res) => {
         __dirname + `./../../frontend/public/images/${files.image.name}`;
       fs.copyFile(files.image.path, newPath, async (error) => {
         try {
-          const response = await postSchema.findByIdAndUpdate(id, {image: files.image.name});
-          return res.status(200).json({msg: 'Your cover photo has been updated successfully'})
+          const response = await postSchema.findByIdAndUpdate(id, {
+            image: files.image.name,
+          });
+          return res
+            .status(200)
+            .json({ msg: "Your cover photo has been updated successfully" });
         } catch (error) {
           return res.status(500).json({ errors: error, msg: error.message });
         }
@@ -184,11 +188,16 @@ const updateImage = async (req, res) => {
   });
 };
 
-
-
-
-
-
+// deleting post
+const deletePost = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const response = await postSchema.findByIdAndRemove(id);
+    return res.status(200).json({ msg: "Your post has been deleted successfully"})
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message });
+  }
+};
 
 module.exports = {
   createPost,
@@ -197,4 +206,5 @@ module.exports = {
   updatePost,
   updateValidation,
   updateImage,
+  deletePost,
 };

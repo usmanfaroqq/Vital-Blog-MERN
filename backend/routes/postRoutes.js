@@ -8,6 +8,7 @@ postRouter.post("/update", postControllers.updateValidation ,postControllers.upd
 postRouter.post("/update-image", postControllers.updateImage);
 postRouter.get("/posts/:id/:page", postControllers.fetchPosts);
 postRouter.get("/post/:id",  postControllers.fetchSinglePost);
+postRouter.get("/delete-post/:id",  postControllers.deletePost);
 
 
 module.exports = postRouter;
