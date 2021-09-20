@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import HomeAllPosts from "./HomeAllPosts";
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
         <title>Vital Blog</title>
         <meta name="description" content="Learn HTML css js etc" />
       </Helmet>
-      <h1>Fine</h1>
+      <HomeAllPosts/>
     </>
   );
 };

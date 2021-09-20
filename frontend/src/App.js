@@ -29,6 +29,10 @@ const App = () => {
           <Navbar />
           <Home />
         </Route>
+        <Route path="/home/:page" exact>
+          <Navbar />
+          <Home />
+        </Route>
         <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard/:page?" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>

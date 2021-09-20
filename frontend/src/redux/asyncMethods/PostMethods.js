@@ -150,3 +150,7 @@ export const updateImage = (updateData) => {
     }
   };
 };
+
+
+
+
