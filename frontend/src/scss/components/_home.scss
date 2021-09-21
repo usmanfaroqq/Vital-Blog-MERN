@@ -1,29 +1,38 @@
 .blogCard {
-  max-width: 100%;
-  max-height: 50%;
-
+  min-width: 100%;
+  min-height: 100%;
+  margin-top: 2.3rem;
+  @extend %headlineBorderTop;
   &-img {
     width: 100%;
-    height: 100%;
+    max-height: 50%;
+    padding: 15px;
   }
-  &-title{
-      font-size:2.2rem;
-      font-weight: 700;
-      font-family: $headline1;
-      color: rgb(17,17,17);
+  &-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: $headline1;
+    margin-top: 1rem;
+    &-link{
+      color: rgb(17, 17, 17);
+      text-decoration: none;
+    }
   }
-  &-author{
+  &-author {
     font-size: 13px;
     font-family: 400;
     font-style: italic;
-    color: #4A2400;
+    color: #4a2400;
     margin-top: 1rem;
   }
-  &-shortDes{
-      font-size: 16px;
-      font-weight: 400;
-      color: #555555;
-      margin-top: 2.5rem;
-
+  &-shortDes {
+    font-size: 16px;
+    font-weight: 400;
+    color: #555555;
+    margin-top: 2.5rem;
   }
+}
+.homeRightBar{
+    top: 0;
+    position: sticky;
 }

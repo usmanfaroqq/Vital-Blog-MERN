@@ -4,6 +4,7 @@ import { allHomePosts } from "../../redux/asyncMethods/HomeGetAllPostMethod";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import test from '../../asset/images/Map Seller Website.png'
+import {Link} from 'react-router-dom'
 
 const HomeAllPosts = () => {
   let { page } = useParams();
@@ -16,6 +17,8 @@ const HomeAllPosts = () => {
   useEffect(() => {
     dispatch(allHomePosts(page));
   }, []);
+
+
   console.log("page", page);
   console.log("posts", posts);
   console.log("count", count);
@@ -23,6 +26,306 @@ const HomeAllPosts = () => {
   return (
     <div>
       <Container>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img img-fluid rounded-start" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title"><Link className="blogCard-title-link">Top 10 topic about JavaScript</Link></Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <div className="blogCard">
+          <Row>
+            <Col md={4}>
+              <div>
+                <Card.Img className="blogCard-img" variant="top" src={test} />
+              </div>
+            </Col>
+            <Col md={8}>
+              <div>
+                <Card.Body>
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
+                  </Card.Text>
+                  <Card.Text className="blogCard-shortDes">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                </Card.Body>
+              </div>
+            </Col>
+          </Row>
+        </div>
         <div className="blogCard">
           <Row>
             <Col md={4}>
