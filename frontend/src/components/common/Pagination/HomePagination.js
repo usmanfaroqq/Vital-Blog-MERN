@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "react-bootstrap";
 
-const DashboardPagination = ({ count, page, perPage }) => {
+const HomePagination = ({ count, page, perPage, path }) => {
   let totalPages = Math.ceil(count / perPage);
   let startLoop = page;
   let difference = totalPages - page;
@@ -23,7 +23,7 @@ const DashboardPagination = ({ count, page, perPage }) => {
         >
           <Link
             className="link"
-            to={`/dashboard/${number}`}
+            to={`/${path}/${number}`}
             style={{ color: "black" }}
           >
             {number}
@@ -34,10 +34,10 @@ const DashboardPagination = ({ count, page, perPage }) => {
     return store;
   };
   return totalPages && count > 3 ? (
-    <Pagination className="pagination">{links()}</Pagination>
+    <Pagination  className="pagination">{links()}</Pagination>
   ) : (
     ""
   );
 };
 
-export default DashboardPagination;
+export default HomePagination;

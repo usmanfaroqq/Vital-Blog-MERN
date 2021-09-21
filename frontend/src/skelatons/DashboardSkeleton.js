@@ -1,6 +1,4 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
-import ContentLoader from "react-content-loader";
 import Skeleton from "react-loading-skeleton";
 
 const DashboardSkeleton = (props) => {

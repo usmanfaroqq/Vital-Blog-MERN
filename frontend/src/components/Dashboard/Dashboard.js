@@ -16,7 +16,7 @@ import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
 import { Dropdown } from "react-bootstrap";
 import EmptyShow from "../common/EmptyShow/EmptyShow";
-import DashboardPagination from "../common/Pagination/Pagination";
+import DashboardPagination from "../common/Pagination/DashboardPagination"
 import axios from "axios";
 import moment from "moment";
 
@@ -175,6 +175,7 @@ const Dashboard = () => {
                 )}
                 <div className="dashboard__body-pagination">
                   <DashboardPagination
+                    path='dashboard'
                     page={page}
                     perPage={perPage}
                     count={count}

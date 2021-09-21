@@ -14,9 +14,9 @@ import UpperNavbar from "./components/common/Navbar/UpperNavbar";
 import EditPost from "./components/Create/EditPost";
 import UnderConstruction from "./components/common/UnderConstruction/UnderConstruction";
 import EditCoverImage from "./components/Create/EditCoverImage";
-import SideBar from "./components/Dashboard/Setting/SideBar";
 import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/ProfileSetting";
 import PasswordSetting from "./components/Dashboard/Setting/SettiingsPart/PasswordSetting";
+import HomeLeftSkeleton from "./skelatons/HomeLeftSkeleton";
 
 
 
@@ -42,7 +42,7 @@ const App = () => {
         <PrivateRoutes path="/edit/cover-photo/:id" exact  component={props => <> <UpperNavbar/> <EditCoverImage/></> }/>
         <PrivateRoutes path="/me/profile" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
         <PrivateRoutes path="/me/password" exact  component={props => <> <UpperNavbar/> <PasswordSetting/></> }/>
-        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <SideBar/></> }/>
+        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <HomeLeftSkeleton/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>

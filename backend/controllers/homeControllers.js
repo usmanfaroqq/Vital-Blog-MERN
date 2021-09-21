@@ -2,7 +2,7 @@ const postSchema = require("../models/Post");
 
 const homeAllPost = async (req, res) => {
   const page = req.params.page;
-  const perPage = 12;
+  const perPage = 30;
   const skip = (page - 1) * perPage;
   try {
     const count = await postSchema.find({}).countDocuments();

@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
-
+import HomeLeftSkeleton from "../../skelatons/HomeLeftSkeleton";
+import HomePagination from "../common/Pagination/HomePagination";
 
 const HomeAllPosts = () => {
   let { page } = useParams();
@@ -17,43 +18,62 @@ const HomeAllPosts = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allHomePosts(page));
-  }, []);
-
+  }, [page]);
 
   return (
     <div>
       <Container>
-        <div className="blogCard">
-          {!loading ? posts.length > 0 ? posts.map(post => (
-              <Row>
-              <Col md={4}>
-                <div>
-                  <Card.Img
-                    className="blogCard-img img-fluid rounded-start"
-                    variant="top"
-                    src={post.image}
-                  />
-                </div>
-              </Col>
-              <Col md={8}>
-                <div>
-                  <Card.Body>
-                    <Card.Title className="blogCard-title">
-                      <Link className="blogCard-title-link">
-                        {post.title}
-                      </Link>
-                    </Card.Title>
-                    <Card.Text className="blogCard-shortDes">
-                      {(post.body.slice(0,90)).replace(/<[^>]*>/g)}<Link className="blogCard-title-link">read more....</Link>
-                    </Card.Text>
-                    <Card.Text className="blogCard-author">
-                     Posted at {moment(post.createdAt).format('ll')} by {post.userName}
-                    </Card.Text>
-                  </Card.Body>
-                </div>
-              </Col>
-            </Row>
-          )) : 'No post' : 'Fine'}
+        {!loading ? (
+          posts.length > 0 ? (
+            posts.map((post) => (
+              <div className="blogCard">
+                <Row>
+                  <Col md={4}>
+                    <div>
+                      <Card.Img
+                        className="blogCard-img img-fluid rounded-start"
+                        variant="top"
+                        src={`/images/${post.image}`}
+                      />
+                    </div>
+                  </Col>
+                  <Col md={8}>
+                    <div>
+                      <Card.Body>
+                        <Card.Title className="blogCard-title">
+                          <Link className="blogCard-title-link">
+                            {post.title}
+                          </Link>
+                        </Card.Title>
+                        <Card.Text className="blogCard-shortDes">
+                          {post.body.slice(0, 90).replace(/<[^>]*>/g)}
+                          <Link className="blogCard-title-link">
+                            read more....
+                          </Link>
+                        </Card.Text>
+                        <Card.Text className="blogCard-author">
+                          Posted at {moment(post.createdAt).format("ll")} by{" "}
+                          {post.userName}
+                        </Card.Text>
+                      </Card.Body>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            ))
+          ) : (
+            "No post"
+          )
+        ) : (
+          <HomeLeftSkeleton />
+        )}
+        <div className="dashboard__body-pagination">
+          <HomePagination
+            path="home"
+            page={page}
+            perPage={perPage}
+            count={count}
+          />
         </div>
       </Container>
     </div>
