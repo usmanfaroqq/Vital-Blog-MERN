@@ -1,0 +1,29 @@
+.blogCard {
+  max-width: 100%;
+  max-height: 50%;
+
+  &-img {
+    width: 100%;
+    height: 100%;
+  }
+  &-title{
+      font-size:2.2rem;
+      font-weight: 700;
+      font-family: $headline1;
+      color: rgb(17,17,17);
+  }
+  &-author{
+    font-size: 13px;
+    font-family: 400;
+    font-style: italic;
+    color: #4A2400;
+    margin-top: 1rem;
+  }
+  &-shortDes{
+      font-size: 16px;
+      font-weight: 400;
+      color: #555555;
+      margin-top: 2.5rem;
+
+  }
+}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { allHomePosts } from "../../redux/asyncMethods/HomeGetAllPostMethod";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import test from '../../asset/images/Map Seller Website.png'
 
 const HomeAllPosts = () => {
   let { page } = useParams();
@@ -22,22 +23,21 @@ const HomeAllPosts = () => {
   return (
     <div>
       <Container>
-        <div>
+        <div className="blogCard">
           <Row>
             <Col md={4}>
               <div>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img className="blogCard-img" variant="top" src={test} />
               </div>
             </Col>
             <Col md={8}>
               <div>
                 <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                  <Card.Title className="blogCard-title">Top 10 topic about JavaScript</Card.Title>
+                  <Card.Text className="blogCard-author">
+                    Some quick example text to 
                   </Card.Text>
-                  <Card.Text>
+                  <Card.Text className="blogCard-shortDes">
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </Card.Text>
