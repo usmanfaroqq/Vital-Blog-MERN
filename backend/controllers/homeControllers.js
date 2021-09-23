@@ -1,5 +1,6 @@
 const postSchema = require("../models/Post");
 
+// for all posts in home page
 const homeAllPost = async (req, res) => {
   const page = req.params.page;
   const perPage = 30;
@@ -17,6 +18,19 @@ const homeAllPost = async (req, res) => {
   }
 };
 
+// single page with details
+
+const singlePostDetails = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const postWithDetails = await postSchema.findOne({ _id: id });
+    return res.status(200).json({ postWithDetails });
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message });
+  }
+};
+
 module.exports = {
   homeAllPost,
+  singlePostDetails
 };

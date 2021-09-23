@@ -17,6 +17,7 @@ import EditCoverImage from "./components/Create/EditCoverImage";
 import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/ProfileSetting";
 import PasswordSetting from "./components/Dashboard/Setting/SettiingsPart/PasswordSetting";
 import HomeLeftSkeleton from "./skelatons/HomeLeftSkeleton";
+import Details from "./components/PostDetails/Details";
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
           <Navbar />
           <Home />
         </Route>
+        <Route path="/post/details/:id" exact component={props => <> <Navbar/> <Details/></> } />
         <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard/:page?" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
