@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allHomePosts } from "../../redux/asyncMethods/HomeGetAllPostMethod";
@@ -21,7 +20,7 @@ const HomeAllPosts = () => {
   useEffect(() => {
     dispatch(allHomePosts(page));
   }, [page]);
-  var regex = /(&nbsp;|<([^>]+)>)/ig
+  var regex = /(&nbsp;|<([^>]+)>)/gi;
   return (
     <div>
       <Container>
@@ -43,13 +42,19 @@ const HomeAllPosts = () => {
                     <div>
                       <Card.Body>
                         <Card.Title className="blogCard-title">
-                          <Link className="blogCard-title-link" to={`/post/details/${post._id}`}>
+                          <Link
+                            className="blogCard-title-link"
+                            to={`/post/details/${post.slug}`}
+                          >
                             {post.title}
                           </Link>
                         </Card.Title>
                         <Card.Text className="blogCard-shortDes">
                           {post.body.slice(0, 90).replace(regex)}
-                          <Link className="blogCard-title-link" to={`/post/details/${post._id}`}>
+                          <Link
+                            className="blogCard-title-link"
+                            to={`/post/details/${post._id}`}
+                          >
                             read more....
                           </Link>
                         </Card.Text>

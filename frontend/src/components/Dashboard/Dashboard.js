@@ -139,7 +139,7 @@ const Dashboard = () => {
                               <Dropdown.Menu>
                                 <Dropdown.Item>
                                   <Link
-                                    to={`/edit/${post._id}`}
+                                    to={`/edit/${post.slug}`}
                                     className="dashboard__body-lower-link"
                                   >
                                     Edit
@@ -147,7 +147,7 @@ const Dashboard = () => {
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                   <Link
-                                    to={`/edit/cover-photo/${post._id}`}
+                                    to={`/edit/cover-photo/${post.slug}`}
                                     className="dashboard__body-lower-link"
                                   >
                                     Edit Cover Photo

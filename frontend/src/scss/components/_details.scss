@@ -51,3 +51,34 @@
     }
   }
 }
+
+// comment section
+
+.comment {
+  margin-top: 4rem;
+  @extend %headlineBorderTop;
+  & h1 {
+    margin-top: 2rem;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: $headline2;
+  }
+  &-box {
+    font-weight: 400;
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    &-textArea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      font-size: 15px;
+      background-color: $silver !important;
+      border-bottom: 2px solid transparent;
+    }
+  }
+  &-btn{
+    font-size: 1.5rem;
+  }
+}

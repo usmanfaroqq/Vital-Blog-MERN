@@ -23,7 +23,7 @@ const homeAllPost = async (req, res) => {
 const singlePostDetails = async (req, res) => {
   const id = req.params.id;
   try {
-    const postWithDetails = await postSchema.findOne({ _id: id });
+    const postWithDetails = await postSchema.findOne({ slug: id });
     return res.status(200).json({ postWithDetails });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
@@ -32,5 +32,5 @@ const singlePostDetails = async (req, res) => {
 
 module.exports = {
   homeAllPost,
-  singlePostDetails
+  singlePostDetails,
 };
