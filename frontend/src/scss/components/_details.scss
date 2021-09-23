@@ -1,5 +1,6 @@
 .postDetails {
   margin-top: 2.3rem;
+  padding: 5px;
   &-title {
     font-size: 4.5rem;
     font-weight: 400;
@@ -11,10 +12,42 @@
     height: 100%;
     margin-top: 2rem;
   }
-  &-bodyText{
-      margin-top: 2rem;
-      font-size: 2rem;
-      font-weight: 400;
-      color: #090909;
+  &-bodyText {
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #090909;
+  }
+  &__header {
+    display: flex;
+    margin-top: 3rem;
+
+    &__avator {
+      width: 4rem;
+      height: 4rem;
+      background: #40407a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+      font-size: 18px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    &__user {
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      span:nth-child(1) {
+        font-size: 1.6rem;
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+      span:nth-child(2) {
+        font-size: 1.3rem;
+        font-weight: 400;
+      }
+    }
   }
 }

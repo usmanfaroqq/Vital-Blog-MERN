@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allHomePosts } from "../../redux/asyncMethods/HomeGetAllPostMethod";
@@ -13,13 +14,14 @@ const HomeAllPosts = () => {
   if (page === undefined) {
     page = 1;
   }
+
   const { loading } = useSelector((state) => state.PostReducer);
   const { posts, count, perPage } = useSelector((state) => state.FetchPosts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allHomePosts(page));
   }, [page]);
-
+  var regex = /(&nbsp;|<([^>]+)>)/ig
   return (
     <div>
       <Container>
@@ -46,8 +48,8 @@ const HomeAllPosts = () => {
                           </Link>
                         </Card.Title>
                         <Card.Text className="blogCard-shortDes">
-                          {post.body.slice(0, 90).replace(/<[^>]*>/g)}
-                          <Link className="blogCard-title-link">
+                          {post.body.slice(0, 90).replace(regex)}
+                          <Link className="blogCard-title-link" to={`/post/details/${post._id}`}>
                             read more....
                           </Link>
                         </Card.Text>

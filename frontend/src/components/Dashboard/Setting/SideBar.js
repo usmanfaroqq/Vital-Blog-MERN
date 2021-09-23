@@ -26,6 +26,11 @@ const SideBar = () => {
               <h1>Settings</h1>
               <div className="sidebar__setting-list">
                 <li className="links">
+                  <Link className="links" to="/dashboard">
+                    Blogs
+                  </Link>
+                </li>
+                <li className="links">
                   <Link className="links" to="/me/profile">
                     Profile
                   </Link>
