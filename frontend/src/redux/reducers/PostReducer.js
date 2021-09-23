@@ -15,6 +15,7 @@ import {
   REMOVE_UPDATE_ERRORS,
   UPDATE_IMAGE_ERRORS,
   REMOVE_UPDATE_IMAGE_ERRORS,
+  SET_POST_DETAILS,
 } from "../types/PostTypes";
 
 const initState = {
@@ -29,6 +30,7 @@ const initState = {
   postStatus: false,
   updateErrors: [],
   updateImageErrors: [],
+  postDetails: {},
 };
 
 // Posting new blog
@@ -50,6 +52,8 @@ export const PostReducer = (state = initState, action) => {
     return { ...state, message: "" };
   } else if (type === REMOVE_ERRORS) {
     return { ...state, createErrors: [] };
+  } else if (type === SET_POST_DETAILS) {
+    return { ...state, postDetails: payload };
   } else {
     return state;
   }
