@@ -15,7 +15,9 @@ import Comments from "./Comments";
 
 const Details = () => {
   const { id } = useParams();
-  const { loading, postDetails, comments } = useSelector((state) => state.PostReducer);
+  const { loading, postDetails, comments } = useSelector(
+    (state) => state.PostReducer
+  );
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +32,7 @@ const Details = () => {
       postComment({ id: postDetails._id, comment, userName: user.name })
     );
     setComment("");
+    dispatch(singlePostDetails(id));
   };
   return (
     <div>
@@ -65,24 +68,24 @@ const Details = () => {
 
             {user ? (
               <>
-              <div className="comment">
-                <h1>Discussion</h1>
-                <form onSubmit={handleAddComment}>
-                  <div className="comment-box">
-                    <textarea
-                      name="comment"
-                      className="comment-box-textArea"
-                      placeholder="Comment your Discussion "
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                    ></textarea>
-                    <button className="comment-btn btn btn-primary">
-                      Comment
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <Comments comments={comments}/>
+                <div className="comment">
+                  <h1>Discussion</h1>
+                  <form onSubmit={handleAddComment}>
+                    <div className="comment-box">
+                      <textarea
+                        name="comment"
+                        className="comment-box-textArea"
+                        placeholder="Comment your Discussion "
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                      ></textarea>
+                      <button className="comment-btn btn btn-primary">
+                        Comment
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <Comments comments={comments} />
               </>
             ) : (
               ""

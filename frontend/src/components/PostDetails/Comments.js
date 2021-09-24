@@ -14,7 +14,7 @@ const Comments = ({ comments }) => {
           <div className="">
             <p className="commentShow-text">{comment.comment}</p>
             <footer className="commentShow-footer">
-              {comment.userName}{" "}
+              {comment.userName}{" "} - {" "}
               {moment(comment.createdAt).format("MMM Do YY")}
             </footer>
           </div>
