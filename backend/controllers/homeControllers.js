@@ -1,4 +1,5 @@
 const postSchema = require("../models/Post");
+const commentSchema = require("../models/Comment");
 
 // for all posts in home page
 const homeAllPost = async (req, res) => {
@@ -30,7 +31,25 @@ const singlePostDetails = async (req, res) => {
   }
 };
 
+const postComment = async (req, res) => {
+  const { id, comment, userName } = req.body;
+  try {
+    const response = await commentSchema.create({
+      postId: id,
+      comment: comment,
+      userName: userName,
+    });
+    return res.status(200).json({
+      msg: "Your comment has been submitted successfully",
+      response,
+    });
+  } catch (error) {
+    return res.status(500).json({ errors: error, msg: error.message });
+  }
+};
+
 module.exports = {
   homeAllPost,
   singlePostDetails,
+  postComment,
 };

@@ -61,7 +61,7 @@ const createPost = (req, res) => {
               userId: id,
             });
             return res.status(200).json({
-              msg: "Your Post have been submitted successfully",
+              msg: "Your Post has been submitted successfully",
               response,
             });
           } catch (error) {

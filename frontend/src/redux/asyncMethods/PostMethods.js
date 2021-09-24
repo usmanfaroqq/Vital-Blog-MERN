@@ -33,7 +33,6 @@ export const createAction = (formData) => {
       dispatch({ type: REDIRECT_TRUE });
       dispatch({ type: SET_MESSAGE, payload: data.msg });
     } catch (error) {
-      console.log(error.response);
       const { errors } = error.response.data;
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: POST_ERRORS, payload: errors });

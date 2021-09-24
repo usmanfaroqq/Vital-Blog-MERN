@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { singlePostDetails } from "../../redux/asyncMethods/HomeGetAllPostMethod";
+import {
+  singlePostDetails,
+  postComment,
+} from "../../redux/asyncMethods/HomeGetAllPostMethod";
 import { Helmet } from "react-helmet";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import HomeRightBar from "../Home/HomeRightBar";
@@ -22,7 +25,10 @@ const Details = () => {
   const [comment, setComment] = useState("");
   const handleAddComment = (e) => {
     e.preventDefault();
-    console.log(comment);
+    dispatch(
+      postComment({ id: postDetails._id, comment, userName: user.name })
+    );
+    setComment("");
   };
   return (
     <div>
@@ -53,7 +59,7 @@ const Details = () => {
                 </div>
               </div>
             ) : (
-              <DetailSkeleton/>
+              <DetailSkeleton />
             )}
 
             {user ? (
