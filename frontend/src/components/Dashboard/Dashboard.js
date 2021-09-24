@@ -117,7 +117,7 @@ const Dashboard = () => {
                       <div className="dashboard__body-card" key={post._id}>
                         <div className="dashboard__body-middle">
                           <h2>
-                            <Link
+                            <Link to={`/post/details/${post.slug}`}
                               style={{ textDecoration: "none", color: "black" }}
                             >
                               {post.title}
@@ -139,7 +139,7 @@ const Dashboard = () => {
                               <Dropdown.Menu>
                                 <Dropdown.Item>
                                   <Link
-                                    to={`/edit/${post.slug}`}
+                                    to={`/edit/${post._id}`}
                                     className="dashboard__body-lower-link"
                                   >
                                     Edit
@@ -147,7 +147,7 @@ const Dashboard = () => {
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                   <Link
-                                    to={`/edit/cover-photo/${post.slug}`}
+                                    to={`/edit/cover-photo/${post._id}`}
                                     className="dashboard__body-lower-link"
                                   >
                                     Edit Cover Photo

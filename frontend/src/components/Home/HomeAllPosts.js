@@ -53,7 +53,7 @@ const HomeAllPosts = () => {
                           {post.body.slice(0, 90).replace(regex)}
                           <Link
                             className="blogCard-title-link"
-                            to={`/post/details/${post._id}`}
+                            to={`/post/details/${post.slug}`}
                           >
                             read more....
                           </Link>

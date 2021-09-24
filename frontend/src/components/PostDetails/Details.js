@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import HomeRightBar from "../Home/HomeRightBar";
 import moment from "moment";
+import DetailSkeleton from "../../skelatons/DetailsSkeleton";
 // import { htmlToText } from 'html-to-text';
 
 const Details = () => {
@@ -52,7 +53,7 @@ const Details = () => {
                 </div>
               </div>
             ) : (
-              "Ok"
+              <DetailSkeleton/>
             )}
 
             {user ? (
