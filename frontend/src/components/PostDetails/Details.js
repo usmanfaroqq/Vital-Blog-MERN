@@ -6,7 +6,7 @@ import {
   postComment,
 } from "../../redux/asyncMethods/HomeGetAllPostMethod";
 import { Helmet } from "react-helmet";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import HomeRightBar from "../Home/HomeRightBar";
 import moment from "moment";
 import DetailSkeleton from "../../skelatons/DetailsSkeleton";

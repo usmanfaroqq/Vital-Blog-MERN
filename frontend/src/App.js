@@ -16,7 +16,6 @@ import UnderConstruction from "./components/common/UnderConstruction/UnderConstr
 import EditCoverImage from "./components/Create/EditCoverImage";
 import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/ProfileSetting";
 import PasswordSetting from "./components/Dashboard/Setting/SettiingsPart/PasswordSetting";
-import HomeLeftSkeleton from "./skelatons/HomeLeftSkeleton";
 import Details from "./components/PostDetails/Details";
 import Footer from "./components/common/Footer/Footer";
 

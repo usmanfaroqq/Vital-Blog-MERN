@@ -19,7 +19,7 @@ const HomePagination = ({ count, page, perPage, path }) => {
       store.push(
         <Pagination.Item
           key={number}
-          className={number == page ? "active" : "unClicked"}
+          className={number === page ? "active" : "unClicked"}
         >
           <Link
             className="link"

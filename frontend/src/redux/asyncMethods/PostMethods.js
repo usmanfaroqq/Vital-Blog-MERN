@@ -12,7 +12,8 @@ import {
   SET_UPDATE_ERRORS,
   UPDATE_IMAGE_ERRORS,
 } from "../types/PostTypes";
-const token = localStorage.getItem("myToken");
+
+// const token = localStorage.getItem("myToken");
 
 // Posting content
 export const createAction = (formData) => {

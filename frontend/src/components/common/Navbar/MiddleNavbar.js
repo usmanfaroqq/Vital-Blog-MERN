@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import dateFormat from "dateformat";
 import { FaFacebookF,FaTwitter,FaYoutube } from "react-icons/fa";
@@ -41,7 +41,7 @@ const MiddleNavbar = () => {
                   {" "}
                   <FaYoutube />
                 </a>
-                <a to="/" style={{color: "black"}}>
+                <a href="*" style={{color: "black"}}>
                   {" "}
                   <ImSearch />
                 </a>

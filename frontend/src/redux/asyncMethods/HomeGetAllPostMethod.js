@@ -1,16 +1,9 @@
 import axios from "axios";
 import {
   POST_ERRORS,
-  REMOVE_ERRORS,
   SET_LOADER,
   CLOSE_LOADER,
-  REDIRECT_TRUE,
-  SET_MESSAGE,
   SET_POSTS,
-  SET_POST,
-  POST_REQUEST,
-  SET_UPDATE_ERRORS,
-  UPDATE_IMAGE_ERRORS,
   SET_POST_DETAILS,
   COMMENTS
 } from "../types/PostTypes";

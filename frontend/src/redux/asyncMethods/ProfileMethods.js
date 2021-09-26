@@ -7,7 +7,6 @@ import {
 } from "../types/PostTypes";
 import {
   GET_PROFILE_ERRORS,
-  REMOVE_PROFILE_ERRORS,
 } from "../types/ProfileTypes";
 import { SET_TOKEN } from "../types/AuthTypes";
 
