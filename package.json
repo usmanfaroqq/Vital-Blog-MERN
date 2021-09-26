@@ -3,7 +3,8 @@
     "concurrently": "^6.2.1"
   },
   "engines": {
-    "node": "v16.3.x"
+    "node": "v16.3.x",
+    "npm" : "v7.16.x"
   },
 
   "scripts": {
