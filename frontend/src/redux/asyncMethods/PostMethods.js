@@ -27,7 +27,7 @@ export const createAction = (formData) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await axios.post("createNew_post", formData, config);
+      const { data } = await axios.post("/createNew_post", formData, config);
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: REMOVE_ERRORS });
       dispatch({ type: REDIRECT_TRUE });
