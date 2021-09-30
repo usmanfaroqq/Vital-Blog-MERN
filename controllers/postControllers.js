@@ -46,7 +46,7 @@ const createPost = (req, res) => {
       return res.status(400).json({ errors, files });
     } else {
       const newPath =
-        __dirname + `./../../frontend/build/images/${files.image.name}`;
+        __dirname + `./../../frontend/ build/images/${files.image.name}`;
       fs.copyFile(files.image.path, newPath, async (error) => {
         if (!error) {
           try {
@@ -172,7 +172,7 @@ const updateImage = async (req, res) => {
       return res.status(400).json({ errors: updateImageErrors });
     } else {
       const newPath =
-        __dirname + `./../../frontend/build/images/${files.image.name}`;
+        __dirname + `./../../frontend/ build/images/${files.image.name}`;
       fs.copyFile(files.image.path, newPath, async (error) => {
         try {
           const response = await postSchema.findByIdAndUpdate(id, {
