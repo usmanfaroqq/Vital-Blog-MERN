@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import swal from "sweetalert";
 import { createAction } from "../../redux/asyncMethods/PostMethods";
@@ -23,8 +23,15 @@ const CreatePost = (props) => {
     title: "",
     description: "",
     image: "",
+    body: "",
   });
   const handleDescription = (event) => {
+    setInputState({
+      ...inputState,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleBody = (event) => {
     setInputState({
       ...inputState,
       [event.target.name]: event.target.value,
@@ -77,19 +84,17 @@ const CreatePost = (props) => {
     setCategory({
       ...(category[event.target.name] = event.target.value),
     });
-    console.log("cate", category);
   };
 
   // Body post content React quill
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
 
   const createNewPost = (event) => {
     event.preventDefault();
-
-    const { title, description, image } = inputState;
+    const { title, description, image, body } = inputState;
     const postData = new FormData();
     postData.append("title", title);
-    postData.append("body", value);
+    postData.append("body", body);
     postData.append("image", image);
     postData.append("description", description);
     postData.append("category", category);
@@ -98,6 +103,7 @@ const CreatePost = (props) => {
     postData.append("id", _id);
     dispatch(createAction(postData));
   };
+  
   // showing error message
   useEffect(() => {
     if (redirect) {
@@ -190,9 +196,7 @@ const CreatePost = (props) => {
                               onChange={selectedCategory}
                             >
                               <option>Choose category</option>
-
                               <option name="news">News</option>
-
                               <option name="business">Business</option>
                               <option name="magazine">Magazine</option>
                               <option name="sport">Sport</option>
@@ -207,16 +211,29 @@ const CreatePost = (props) => {
                       </Row>
                     </div>
 
-                    <div className="textInputGroup">
-                      <label htmlFor="body">
-                        Describe your content in detail...
-                      </label>
-                      <ReactQuill
+                    {/* <ReactQuill
                         theme="snow"
                         value={value}
                         onChange={setValue}
                         placeholder="Lorem Ispum..."
-                      />
+                      /> */}
+                    <div className="textInputGroup">
+                      <label htmlFor="body">
+                        Describe your content in detail...
+                      </label>
+                      <textarea
+                        name="body"
+                        rows="5"
+                        id=""
+                        value={inputState.body}
+                        onChange={handleBody}
+                        className="textInputGroup__control"
+                        placeholder="Lorem Ispum..."
+                      ></textarea>
+                      <p className="description-p">
+                        {" "}
+                        {inputState.body ? inputState.body.length : 0}{" "}
+                      </p>
                     </div>
 
                     <div>
@@ -230,7 +247,7 @@ const CreatePost = (props) => {
                               name="description"
                               id=""
                               cols="30"
-                              rows="10"
+                              rows="5"
                               defaultValue={inputState.description}
                               onChange={handleDescription}
                               className="textInputGroup__control"

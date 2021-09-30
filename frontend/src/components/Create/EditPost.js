@@ -17,10 +17,11 @@ const EditPost = () => {
   const { id } = useParams();
   const { push } = useHistory();
   // Body post content React quill
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [editState, setEditState] = useState({
     title: "",
     description: "",
+    body: "",
   });
 
   const dispatch = useDispatch();
@@ -32,8 +33,8 @@ const EditPost = () => {
       setEditState({
         title: post.title,
         description: post.description,
+        body: post.body,
       });
-      setValue(post.body);
       dispatch({ type: POST_RESET });
     } else {
       dispatch(fetchSinglePost(id));
@@ -42,11 +43,10 @@ const EditPost = () => {
 
   const updateEditedPost = (event) => {
     event.preventDefault();
-    console.log(value);
     dispatch(
       updatePost({
         title: editState.title,
-        body: value,
+        body: editState.body,
         description: editState.description,
         id: post._id,
       })
@@ -56,7 +56,7 @@ const EditPost = () => {
   useEffect(() => {
     if (updateErrors.length > 0) {
       updateErrors.map((error) => toast.error(error.msg));
-      dispatch({type: REMOVE_UPDATE_ERRORS})
+      dispatch({ type: REMOVE_UPDATE_ERRORS });
     }
   }, [updateErrors]);
   useEffect(() => {
@@ -86,7 +86,7 @@ const EditPost = () => {
       <div className="create__post">
         <Container>
           <Row>
-          <h1 className="editMyBlogTitle">Edit your blog</h1>
+            <h1 className="editMyBlogTitle">Edit your blog</h1>
 
             <Col md={12}>
               <form onSubmit={updateEditedPost}>
@@ -113,49 +113,66 @@ const EditPost = () => {
                     <label htmlFor="body">
                       Describe your content in detail...
                     </label>
-                    <ReactQuill
-                      theme="snow"
-                      id="body"
+                    <textarea
+                      name="body"
+                      rows="5"
+                      id=""
+                      value={editState.body}
+                      onChange={(e) =>
+                        setEditState({
+                          ...editState,
+                          body: e.target.value,
+                        })
+                      }
+                      onKeyUp={(e) =>
+                        setEditState({
+                          ...editState,
+                          body: e.target.value,
+                        })
+                      }
+                      className="textInputGroup__control"
                       placeholder="Lorem Ispum..."
-                      value={value}
-                      onChange={setValue}
-                    />
+                    ></textarea>
+                    <p className="description-p">
+                      {" "}
+                      {editState.body ? editState.body.length : 0}{" "}
+                    </p>
                   </div>
 
                   <div>
-                      <Col md={12}>
-                        <div className="textInputGroup">
-                          <label htmlFor="description">Meta description</label>
-                          <textarea
-                            name="description"
-                            id=""
-                            cols="30"
-                            rows="10"
-                            className="textInputGroup__control"
-                            placeholder="meta description...."
-                            maxLength="200"
-                            defaultValue={editState.description}
-                            onChange={(e) =>
-                              setEditState({
-                                ...editState,
-                                description: e.target.value,
-                              })
-                            }
-                            onKeyUp={(e) =>
-                              setEditState({
-                                ...editState,
-                                description: e.target.value,
-                              })
-                            }
-                          ></textarea>
-                          <p className="description-p">
-                            {" "}
-                            {editState.description
-                              ? editState.description.length
-                              : 0}{" "}
-                          </p>
-                        </div>
-                      </Col>
+                    <Col md={12}>
+                      <div className="textInputGroup">
+                        <label htmlFor="description">Meta description</label>
+                        <textarea
+                          name="description"
+                          id=""
+                          cols="30"
+                          rows="3"
+                          className="textInputGroup__control"
+                          placeholder="meta description...."
+                          maxLength="200"
+                          defaultValue={editState.description}
+                          onChange={(e) =>
+                            setEditState({
+                              ...editState,
+                              description: e.target.value,
+                            })
+                          }
+                          onKeyUp={(e) =>
+                            setEditState({
+                              ...editState,
+                              description: e.target.value,
+                            })
+                          }
+                        ></textarea>
+                        <p className="description-p">
+                          {" "}
+                          {editState.description
+                            ? editState.description.length
+                            : 0}{" "}
+                        </p>
+                      </div>
+                    </Col>
                     <div className="group">
                       <input
                         type="submit"

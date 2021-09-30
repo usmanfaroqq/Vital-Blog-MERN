@@ -123,7 +123,6 @@ const Dashboard = () => {
                               {post.title}
                             </Link>
                           </h2>
-                          <h5>Content Short body</h5>
                         </div>
                         <div className="dashboard__body-lower gap-4">
                           <p>Published {moment(post.createdAt).fromNow()}</p>

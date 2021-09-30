@@ -5,8 +5,6 @@ const { body, validationResult } = require("express-validator");
 const fs = require("fs");
 const { htmlToText } = require("html-to-text");
 
-
-
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, async (error, fields, files) => {
@@ -74,8 +72,6 @@ const createPost = (req, res) => {
   });
 };
 
-
-
 // fetch post
 const fetchPosts = async (req, res) => {
   const id = req.params.id;
@@ -108,8 +104,6 @@ const fetchSinglePost = async (req, res) => {
   }
 };
 
-
-
 // updating post validation
 const updateValidation = [
   body("title")
@@ -134,8 +128,6 @@ const updateValidation = [
     .withMessage("Please give a short description to your content"),
 ];
 
-
-
 // updating post
 const updatePost = async (req, res) => {
   const { title, body, description, id } = req.body;
@@ -155,7 +147,6 @@ const updatePost = async (req, res) => {
     }
   }
 };
-
 
 // updating image
 const updateImage = async (req, res) => {
@@ -198,20 +189,18 @@ const updateImage = async (req, res) => {
   });
 };
 
-
 // deleting post
 const deletePost = async (req, res) => {
   const id = req.params.id;
   try {
     const response = await postSchema.findByIdAndRemove(id);
-    return res.status(200).json({ msg: "Your post has been deleted successfully"})
+    return res
+      .status(200)
+      .json({ msg: "Your post has been deleted successfully" });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
   }
 };
-
-
-
 
 module.exports = {
   createPost,
